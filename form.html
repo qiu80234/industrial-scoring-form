@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工业班组 360° 评估表 Formulir Evaluasi 360° Industri</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans SC',sans-serif;background:#f0f2f5;color:#1a1a2e;line-height:1.5}
+.wrap{max-width:640px;margin:0 auto;padding:12px}
+.header{background:linear-gradient(135deg,#2d6a4f,#40916c);border-radius:14px;padding:28px 20px;text-align:center;color:#fff;margin-bottom:16px}
+.header h1{font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.header .sub{font-size:.88rem;opacity:.85;margin-bottom:10px}
+.header .desc{font-size:.78rem;opacity:.7}
+.section{margin-bottom:14px}
+.sec-head{border-radius:10px;padding:14px 16px;margin-bottom:8px;color:#fff;font-weight:600;font-size:1rem}
+.s1{background:linear-gradient(135deg,#2d6a4f,#52b788)}
+.s2{background:linear-gradient(135deg,#1d3557,#457b9d)}
+.s3{background:linear-gradient(135deg,#9c4221,#e76f51)}
+.sec-desc{font-size:.76rem;opacity:.8;font-weight:400;margin-top:4px;font-style:italic}
+.card{background:#fff;border-radius:10px;padding:0;margin-bottom:6px;border:1px solid #e0e0e0;overflow:hidden;transition:border-color .2s}
+.card:hover{border-color:#40916c}
+.card label{display:flex;align-items:center;padding:12px 14px;cursor:pointer;gap:12px;user-select:none}
+.card input[type=checkbox]{width:22px;height:22px;accent-color:#2d6a4f;cursor:pointer;flex-shrink:0}
+.card .info{flex:1;min-width:0}
+.card .title{font-size:.88rem;font-weight:500;color:#1a1a2e}
+.card .detail{font-size:.75rem;color:#777;margin-top:2px}
+.card .title-id{font-size:.72rem;color:#999;font-style:italic;margin-top:1px;font-weight:400}
+.card .detail-id{font-size:.68rem;color:#aaa;font-style:italic}
+.card .pts{font-size:.82rem;font-weight:700;color:#2d6a4f;background:#e8f5e9;padding:4px 10px;border-radius:16px;white-space:nowrap;flex-shrink:0}
+.card.checked{background:#f0fdf4;border-color:#40916c}
+.card.penalty{border-color:#fecaca}
+.card.penalty:hover{border-color:#ef4444}
+.card.penalty input[type=checkbox]{accent-color:#dc2626}
+.card.penalty .pts{color:#dc2626;background:#fef2f2}
+.card.penalty.checked{background:#fef2f2;border-color:#ef4444}
+.card.input-card{padding:0}
+.card.input-card .card-inner{display:flex;align-items:center;padding:12px 14px;gap:12px}
+.card.input-card .input-wrap{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.card.input-card input[type=number]{width:56px;padding:6px 4px;border:1px solid #ddd;border-radius:8px;font-size:.9rem;font-family:inherit;text-align:center;background:#fafafa;-moz-appearance:textfield}
+.card.input-card input[type=number]::-webkit-outer-spin-button,
+.card.input-card input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.card.input-card input[type=number]:focus{outline:none;border-color:#457b9d;background:#fff}
+.card.input-card .pts-max{font-size:.76rem;color:#457b9d;font-weight:500;white-space:nowrap}
+.card.input-card.filled{background:#f0f4ff;border-color:#457b9d}
+.info-sec select{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:.88rem;font-family:inherit;background:#fafafa;color:#1a1a2e;appearance:auto}
+.info-sec select:focus{outline:none;border-color:#40916c;background:#fff}
+.info-sec{background:#fff;border-radius:10px;padding:16px;margin-bottom:14px;border:1px solid #e0e0e0}
+.info-sec h3{font-size:.92rem;font-weight:600;margin-bottom:10px;color:#333}
+.info-sec input,.info-sec textarea{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:8px;font-size:.88rem;font-family:inherit;background:#fafafa}
+.info-sec input:focus,.info-sec textarea:focus{outline:none;border-color:#40916c;background:#fff}
+.info-sec .field{margin-bottom:10px}
+.info-sec .field-label{font-size:.82rem;color:#555;margin-bottom:4px;font-weight:500}
+.preview{background:#fff;border-radius:10px;padding:16px;margin:14px 0;border:1px solid #e0e0e0}
+.preview h3{font-size:.92rem;font-weight:600;margin-bottom:10px}
+.prow{display:flex;justify-content:space-between;padding:6px 10px;font-size:.85rem;border-radius:6px;margin-bottom:4px;background:#fafafa}
+.ptotal{background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;font-weight:700;font-size:1rem;padding:10px;border-radius:8px;margin-top:6px}
+.submit-btn{width:100%;padding:14px;background:linear-gradient(135deg,#2d6a4f,#40916c);color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:600;cursor:pointer;font-family:inherit;margin-top:8px}
+.submit-btn:hover{opacity:.9}
+.submit-btn:active{transform:scale(.98)}
+.submit-btn:disabled{opacity:.5;cursor:not-allowed}
+.note{text-align:center;font-size:.75rem;color:#999;margin-top:8px;padding-bottom:20px}
+.id-sub{display:block;font-size:0.78em;color:rgba(255,255,255,0.65);font-weight:400;font-style:italic;line-height:1.3;margin-top:2px}
+.dark-sub{color:#999}
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:99;align-items:center;justify-content:center;padding:20px}
+.overlay.show{display:flex}
+.scard{background:#fff;border-radius:16px;padding:32px 24px;text-align:center;max-width:360px;width:100%;animation:pop .3s ease}
+@keyframes pop{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.scard .icon{font-size:3rem;margin-bottom:12px}
+.scard h2{color:#2d6a4f;margin-bottom:6px}
+.scard p{color:#777;font-size:.88rem;margin-bottom:12px}
+.scard .score{font-size:2rem;font-weight:700;color:#2d6a4f;margin-bottom:4px}
+.scard .grade{font-size:.9rem;padding:4px 16px;border-radius:16px;display:inline-block;margin-bottom:16px}
+.g-s{background:#dcfce7;color:#166534}.g-a{background:#dbeafe;color:#1e40af}
+.g-b{background:#fef3c7;color:#92400e}.g-c{background:#fed7aa;color:#9a3412}.g-d{background:#fecaca;color:#991b1b}
+.close-btn{padding:10px 28px;background:#e0e0e0;border:none;border-radius:8px;font-size:.9rem;cursor:pointer;font-family:inherit}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="header">
+<h1>🏭 工业班组绩效<br>360° 评估表<span class="id-sub">Formulir Evaluasi 360° Kinerja Tim Industri</span></h1>
+<div class="sub">300分总打分表 Tabel Penilaian 300 Poin</div>
+<div class="desc">请根据各项指标进行评估<br><em style="opacity:0.7">Silakan evaluasi berdasarkan setiap indikator</em><br>✅ 勾选 = 达标得分 ｜ ⬜ 不勾选 = 0分 ｜ 🔢 手动输入分数</div>
+</div>
+
+<div class="info-sec">
+<h3>👤 基本信息 <span class="dark-sub" style="font-style:italic;font-size:0.85em">Informasi Dasar</span></h3>
+<div class="field"><div class="field-label">您的姓名 <em style="color:#999;font-size:0.9em">Nama Anda</em> *</div><input type="text" id="voterName" placeholder="请输入姓名 / Masukkan nama" required></div>
+<div class="field"><div class="field-label">被评估班组 <em style="color:#999;font-size:0.9em">Regu yang Dinilai</em> *</div>
+<select id="targetTeam" required>
+<option value="" disabled selected>请选择被评估的班组 / Pilih regu yang dinilai</option>
+<option value="袁志魁 Yuan Zhikui">袁志魁 Yuan Zhikui</option>
+<option value="侯钟令 Hou Zhongling">侯钟令 Hou Zhongling</option>
+</select>
+</div>
+</div>
+
+<div id="formBody"></div>
+
+<div class="info-sec">
+<h3>💬 补充意见 <span class="dark-sub" style="font-style:italic;font-size:0.85em">Komentar Tambahan</span>（选填）</h3>
+<textarea id="comments" rows="3" placeholder="请输入您的意见或建议 / Masukkan saran Anda..."></textarea>
+</div>
+
+<div class="preview">
+<h3>📊 实时得分 <span style="font-size:0.85em;color:#999;font-style:italic">Skor Real-time</span></h3>
+<div class="prow"><span>🏭 工业目标 <em style="color:#999;font-size:0.85em">Target Industri</em></span><span id="m1">0 / 100</span></div>
+<div class="prow"><span>👥 团队建设 <em style="color:#999;font-size:0.85em">Pembangunan Tim</em></span><span id="m2">0 / 100</span></div>
+<div class="prow"><span>🚀 技术突破 <em style="color:#999;font-size:0.85em">Terobosan Teknologi</em></span><span id="m3">0 / 100</span></div>
+<div class="ptotal"><span>总分 Total：<span id="gt">0</span> / 300</span></div>
+</div>
+
+<button class="submit-btn" id="submitBtn" onclick="handleSubmit()">📤 提交评估 Kirim Evaluasi</button>
+<p class="note">提交后数据将保存至 Google 表格，不可修改<br><em>Setelah dikirim, data akan disimpan dan tidak dapat diubah</em></p>
+</div>
+
+<div class="overlay" id="overlay">
+<div class="scard">
+<div class="icon">✅</div>
+<h2>提交成功！Berhasil Terkirim!</h2>
+<p>感谢您的评估，结果已保存至表格。<br><em style="color:#999">Terima kasih, hasil telah disimpan.</em></p>
+<div class="score" id="finalScore"></div>
+<div class="grade" id="finalGrade"></div>
+<br><button class="close-btn" onclick="location.reload()">关闭 Tutup</button>
+</div>
+</div>
+
+<script>
+// Q: [id, module(1-3), name, nameID, desc, descID, maxScore, type]
+// type: "check"=checkbox得分, "penalty"=checkbox扣分, "input"=手动输入
+var Q=[
+["q1",1,"出油率","Tingkat Ekstraksi Minyak (OER)","是否达到预算","Apakah mencapai anggaran",20,"check"],
+["q2",1,"仁得率","Tingkat Perolehan Kernel (KER)","是否达到预算","Apakah mencapai anggaran",20,"check"],
+["q3",1,"成本","Biaya","是否在预算以内","Apakah dalam anggaran",20,"check"],
+["q4",1,"油损","Kehilangan Minyak (Oil Loss)","是否控制在1.4%以下","Apakah terkontrol di bawah 1,4%",20,"check"],
+["q5",1,"满负荷率","Tingkat Kapasitas Penuh","是否达到70%以上","Apakah mencapai 70% ke atas",20,"check"],
+["q6",1,"安全","Keselamatan","是否有安全事故（有则扣20分）","Ada kecelakaan kerja? (Ya = -20 poin)",-20,"penalty"],
+["q7",2,"组织结构完整性","Kelengkapan Struktur Organisasi","请打分（0-20分）","Beri nilai (0-20 poin)",20,"input"],
+["q8",2,"新老员工比例是否合理","Rasio Karyawan Baru & Lama","请打分（0-20分）","Beri nilai (0-20 poin)",20,"input"],
+["q9",2,"是否有梯队，不断层","Kaderisasi Berkelanjutan","请打分（0-20分）","Beri nilai (0-20 poin)",20,"input"],
+["q10",2,"人员储备是否充足，能否应对未来高产","Kecukupan Cadangan SDM untuk Produksi Tinggi","请打分（0-20分）","Beri nilai (0-20 poin)",20,"input"],
+["q11",2,"工厂操作和管理是否安全，安全风险度","Keselamatan Operasi & Manajemen Pabrik","请打分（0-20分）","Beri nilai (0-20 poin)",20,"input"],
+["q12",3,"是否有新的技术改造","Renovasi Teknologi Baru","若有20分，若无则为0分","Ada = 20 poin, Tidak = 0",20,"check"],
+["q13",3,"是否有技术创新","Inovasi Teknologi","若有20分，若无则为0分","Ada = 20 poin, Tidak = 0",20,"check"],
+["q14",3,"柴油使用占比是否低于新能源","Penggunaan Solar Lebih Rendah dari Energi Terbarukan","若是则为20分，若否则为0分","Ya = 20 poin, Tidak = 0",20,"check"],
+["q15",3,"所负责区域工业指标是否突破历史新高（同比）","Rekor Baru Indikator Industri (YoY)","若有则为20分，若无则为0分","Ada = 20 poin, Tidak = 0",20,"check"],
+["q16",3,"污水是否已经合格","Kualifikasi Air Limbah","若合格则为20分，若不合格则为0分","Memenuhi = 20 poin, Tidak = 0",20,"check"]
+];
+
+var modNames={1:"工业目标 Target Industri",2:"团队建设：人、组织、架构 Pembangunan Tim",3:"技术突破 Terobosan Teknologi"};
+var modClass={1:"s1",2:"s2",3:"s3"};
+var modIcons={1:"🏭",2:"👥",3:"🚀"};
+var modDescs={
+1:'"工厂产出是否达标，成本是否可控。"<br><em style="opacity:0.7">"Apakah output pabrik mencapai target, biaya terkontrol?"</em>',
+2:'"是否形成稳定、安全、可持续的组织。"<br><em style="opacity:0.7">"Apakah terbentuk organisasi stabil dan berkelanjutan?"</em>',
+3:'"工业是否开始升级。"<br><em style="opacity:0.7">"Apakah industri mulai berkembang?"</em>'
+};
+var modInputHint={1:"✅ 勾选 = 达标得分 Centang = Skor",2:"🔢 请手动输入分数 Masukkan nilai manual",3:"✅ 勾选 = 达标得分 Centang = Skor"};
+
+function buildForm(){
+  var body=document.getElementById('formBody');
+  var html='';var curMod=0;var num=0;
+  Q.forEach(function(q){
+    if(q[1]!==curMod){
+      if(curMod)html+='</div>';
+      curMod=q[1];
+      var modTotal=Q.filter(function(x){return x[1]===curMod&&x[7]!=='penalty'}).reduce(function(a,b){return a+b[6]},0);
+      html+='<div class="section"><div class="sec-head '+modClass[curMod]+'">'+modIcons[curMod]+' '+
+        (curMod===1?'一':curMod===2?'二':'三')+'、'+modNames[curMod]+'（'+modTotal+'分 Poin）'+
+        '<div class="sec-desc">核心 Inti：'+modDescs[curMod]+'</div>'+
+        '<div class="sec-desc">'+modInputHint[curMod]+'</div></div>';
+    }
+    num++;
+    if(q[7]==='check'){
+      html+='<div class="card" id="card_'+q[0]+'"><label>'+
+        '<input type="checkbox" id="'+q[0]+'" onchange="onCheck(this)">'+
+        '<div class="info"><div class="title">'+num+'. '+q[2]+'</div>'+
+        '<div class="title-id">'+q[3]+'</div>'+
+        '<div class="detail">'+q[4]+'</div>'+
+        '<div class="detail-id">'+q[5]+'</div></div>'+
+        '<div class="pts">'+q[6]+'分</div></label></div>';
+    }else if(q[7]==='penalty'){
+      html+='<div class="card penalty" id="card_'+q[0]+'"><label>'+
+        '<input type="checkbox" id="'+q[0]+'" onchange="onCheck(this)">'+
+        '<div class="info"><div class="title">'+num+'. ⚠️ '+q[2]+'</div>'+
+        '<div class="title-id">'+q[3]+'</div>'+
+        '<div class="detail">'+q[4]+'</div>'+
+        '<div class="detail-id">'+q[5]+'</div></div>'+
+        '<div class="pts">'+q[6]+'分</div></label></div>';
+    }else if(q[7]==='input'){
+      html+='<div class="card input-card" id="card_'+q[0]+'"><div class="card-inner">'+
+        '<div class="info"><div class="title">'+num+'. '+q[2]+'</div>'+
+        '<div class="title-id">'+q[3]+'</div>'+
+        '<div class="detail">'+q[4]+'</div>'+
+        '<div class="detail-id">'+q[5]+'</div></div>'+
+        '<div class="input-wrap"><input type="number" id="'+q[0]+'" min="0" max="'+q[6]+'" step="1" placeholder="0" oninput="onNumInput(this,'+q[6]+')">'+
+        '<span class="pts-max">/ '+q[6]+'分</span></div></div></div>';
+    }
+  });
+  html+='</div>';
+  body.innerHTML=html;
+}
+
+function onCheck(cb){
+  var card=document.getElementById('card_'+cb.id);
+  if(card.classList.contains('penalty')){
+    card.className=cb.checked?'card penalty checked':'card penalty';
+  }else{
+    card.className=cb.checked?'card checked':'card';
+  }
+  updateScore();
+}
+
+function onNumInput(el,max){
+  var v=parseInt(el.value);
+  if(el.value!==''&&(isNaN(v)||v<0)){el.value=0;v=0;}
+  if(v>max){el.value=max;v=max;}
+  var card=document.getElementById('card_'+el.id);
+  card.className=(el.value!==''&&v>0)?'card input-card filled':'card input-card';
+  updateScore();
+}
+
+function updateScore(){
+  var m=[0,0,0];
+  Q.forEach(function(q){
+    if(q[7]==='check'){
+      if(document.getElementById(q[0]).checked) m[q[1]-1]+=q[6];
+    }else if(q[7]==='penalty'){
+      if(document.getElementById(q[0]).checked) m[q[1]-1]+=q[6]; // q[6] is negative
+    }else if(q[7]==='input'){
+      var v=parseInt(document.getElementById(q[0]).value)||0;
+      m[q[1]-1]+=v;
+    }
+  });
+  document.getElementById('m1').textContent=m[0]+' / 100';
+  document.getElementById('m2').textContent=m[1]+' / 100';
+  document.getElementById('m3').textContent=m[2]+' / 100';
+  document.getElementById('gt').textContent=m[0]+m[1]+m[2];
+}
+
+// ⚠️ 部署后请将下面的URL替换为你的 Apps Script 部署链接
+var API_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+function handleSubmit(){
+  var name=document.getElementById('voterName').value.trim();
+  var team=document.getElementById('targetTeam').value;
+  if(!name){alert('请填写姓名！Silakan isi nama!');return;}
+  if(!team){alert('请选择被评估班组！Silakan pilih regu!');return;}
+
+  // Validate section 2 inputs
+  var allFilled=true;
+  Q.forEach(function(q){
+    if(q[7]==='input'){
+      var v=document.getElementById(q[0]).value;
+      if(v===''||v===null){allFilled=false;}
+    }
+  });
+  if(!allFilled){alert('请填写所有团队建设评分项！\nSilakan isi semua nilai Pembangunan Tim!');return;}
+
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true;btn.textContent='⏳ 提交中 Mengirim...';
+
+  var scores=[];var m=[0,0,0];
+  Q.forEach(function(q){
+    var score=0;
+    if(q[7]==='check'){
+      score=document.getElementById(q[0]).checked?q[6]:0;
+    }else if(q[7]==='penalty'){
+      score=document.getElementById(q[0]).checked?q[6]:0;
+    }else if(q[7]==='input'){
+      score=parseInt(document.getElementById(q[0]).value)||0;
+    }
+    scores.push(score);
+    m[q[1]-1]+=score;
+  });
+  var total=m[0]+m[1]+m[2];
+  var grade,gc;
+  if(total>=270){grade='优秀 Sangat Baik';gc='g-s';}
+  else if(total>=240){grade='良好 Baik';gc='g-a';}
+  else if(total>=210){grade='合格 Cukup';gc='g-b';}
+  else if(total>=180){grade='待提升 Perlu Ditingkatkan';gc='g-c';}
+  else{grade='不合格 Tidak Memenuhi';gc='g-d';}
+
+  var data={voter:name,team:team,scores:scores,mod1Total:m[0],mod2Total:m[1],mod3Total:m[2],grandTotal:total,grade:grade,comments:document.getElementById('comments').value.trim()};
+
+  fetch(API_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})
+  .then(function(){showSuccess(total,grade,gc);})
+  .catch(function(e){alert('提交失败，请检查网络后重试 / Gagal mengirim, cek jaringan');btn.disabled=false;btn.textContent='📤 提交评估 Kirim Evaluasi';});
+}
+
+function showSuccess(total,grade,gc){
+  document.getElementById('finalScore').textContent=total+' / 300';
+  var ge=document.getElementById('finalGrade');
+  ge.textContent=grade;ge.className='grade '+gc;
+  document.getElementById('overlay').className='overlay show';
+}
+
+buildForm();
+</script>
+</body>
+</html>
